@@ -39,10 +39,11 @@ public class OrderDataMapper {
                 .build();
     }
 
-    public CreateOrderResponse orderToCreateOrderResponse(Order order) {
+    public CreateOrderResponse orderToCreateOrderResponse(Order order,String message) {
         return CreateOrderResponse.builder()
                 .orderTrackingId(order.getTrackingId().getValue())
                 .orderStatus(order.getOrderStatus())
+                .message(message)
                 .build();
     }
 
@@ -65,6 +66,7 @@ public class OrderDataMapper {
                                 .subTotal(new Money(orderItem.getSubTotal()))
                                 .build()).collect(Collectors.toList());
     }
+
 
     private StreetAddress orderAddressToStreetAddress(OrderAddress orderAddress) {
         return new StreetAddress(

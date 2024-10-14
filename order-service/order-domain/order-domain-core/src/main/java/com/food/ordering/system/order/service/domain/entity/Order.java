@@ -73,6 +73,10 @@ public class Order extends AggregateRoot<OrderId> {
         }
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     private void validateInitialOrder() {
         if (orderStatus != null || getId() != null) {
             throw new OrderDomainException("Order is not in correct state for initialization!");
@@ -171,9 +175,6 @@ public class Order extends AggregateRoot<OrderId> {
         private Builder() {
         }
 
-        public static Builder builder() {
-            return new Builder();
-        }
 
         public Builder orderId(OrderId val) {
             orderId = val;
